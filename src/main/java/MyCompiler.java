@@ -6,14 +6,14 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import org.antlr.v4.runtime.tree.TerminalNode;
+//import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     private PrintStream outputFile;
     private String indent = "";
 
-    MyCompiler(PrintStream output) {
+    private MyCompiler(PrintStream output) {
         outputFile = output;
     }
 
@@ -25,7 +25,8 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         PrintStream py;
 
         System.out.println("Enter the name of the program (without \".c\" extension):");
-        name = inputName.nextLine();
+        //name = inputName.nextLine();
+        name = "hello";
         c = new FileInputStream(name + ".c");
         py  = new PrintStream(new File(name + ".py"));
 
@@ -38,7 +39,6 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         MyCompiler compiler = new MyCompiler(py);
         compiler.visit(tree);
         py.flush();
-        return;
     }
 
     private void append(String s) {
@@ -47,10 +47,6 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     private void appendLine(String s) {
         outputFile.println(indent + s);
-    }
-
-    private void beginLine(String s) {
-        append(indent + s);
     }
 
     private void endLine(String s) {
@@ -75,9 +71,20 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     @Override public Void visitPresentence(CCompilerParser.PresentenceContext ctx) { return visitChildren(ctx); }
 
-    @Override public Void visitFunc_def(CCompilerParser.Func_defContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitFunc_def(CCompilerParser.Func_defContext ctx) {
+        append("def " + ctx.func_name().getText() + "(");
+        visit(ctx.func_param());
+        appendLine("):");
+        visit(ctx.func_block());
+        return null;
+    }
 
-    @Override public Void visitFunc_block(CCompilerParser.Func_blockContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitFunc_block(CCompilerParser.Func_blockContext ctx) {
+        incIndent();
+        visitChildren(ctx);
+        decIndent();
+        return null;
+    }
 
     @Override public Void visitStatement(CCompilerParser.StatementContext ctx) { return visitChildren(ctx); }
 
@@ -93,13 +100,30 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     @Override public Void visitFunc_name(CCompilerParser.Func_nameContext ctx) { return visitChildren(ctx); }
 
-    @Override public Void visitFunc_param(CCompilerParser.Func_paramContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitFunc_param(CCompilerParser.Func_paramContext ctx) {
+        List<CCompilerParser.Param_typeContext> params_type = ctx.param_type();
+        List<CCompilerParser.Param_nameContext> params_name = ctx.param_name();
+        for(int i = 0 ; i < params_type.size() ; i ++){
+            if( i > 0 ){
+                append(",");
+            }
+            append(params_type.get(i).getText()+ " " + params_name.get(i).getText() );
+        }
+        return null;
+    }
 
-    @Override public Void visitParam_type(CCompilerParser.Param_typeContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitParam_type(CCompilerParser.Param_typeContext ctx) {
+        return visitChildren(ctx);
+    }
 
-    @Override public Void visitParam_name(CCompilerParser.Param_nameContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitParam_name(CCompilerParser.Param_nameContext ctx) {
+        return visitChildren(ctx);
+    }
 
-    @Override public Void visitVar_declaration(CCompilerParser.Var_declarationContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitVar_declaration(CCompilerParser.Var_declarationContext ctx) {
+        appendLine(ctx.var_type().getText() + " " + ctx.var_name().getText());
+        return visitChildren(ctx);
+    }
 
     @Override public Void visitVar_type(CCompilerParser.Var_typeContext ctx) { return visitChildren(ctx); }
 

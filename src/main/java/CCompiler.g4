@@ -12,9 +12,9 @@ func_block : '{' statement* '}';
 
 statement :  var_declaration | ret ;
 
-    ret : RETURN return_val ';' ;
+ret : RETURN return_val ';' ;
 
-    return_val : INTVALUE | CHARVALUE ;
+return_val : INTVALUE | CHARVALUE ;
 
 declaration : func_declaration | var_declaration;
 
@@ -47,11 +47,10 @@ var_value_char : '\'' CHARVALUE '\'';
 //for
 
 
-
-
 // words;
 
 TYPE : INT | CHAR;
+
 
 INT : 'int';
 
@@ -59,12 +58,14 @@ VOID : 'void';
 
 CHAR : 'char';
 
+
 INTVALUE : [0-9]+;
 
 CHARVALUE : [a-z];
 
-IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]* ;
+IDENTIFIER: [a-zA-Z_] [a-zA-Z0-9_]* ;
 
-    RETURN :  'return';
+
+RETURN :  'return';
 
 WS : [ \t\r\n]+ -> skip ;
