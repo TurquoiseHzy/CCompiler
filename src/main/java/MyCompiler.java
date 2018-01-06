@@ -5,7 +5,7 @@ import java.util.Scanner;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 
 public class MyCompiler extends CCompilerBaseVisitor<Void>{
@@ -46,7 +46,7 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     }
 
     private void appendLine(String s) {
-        outputFile.println(indent + s);
+        outputFile.print(indent + s);
     }
 
     private void endLine(String s) {
@@ -82,59 +82,192 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     }
 
     @Override public Void visitFunctionTitle(CCompilerParser.FunctionTitleContext ctx) {
-        append("def " + ctx.)
+        append("def " + ctx.functionName().getText() + "(");
+        visit(ctx.functionParams());
+        endLine("):");
+        return null;
+    }
+
+    @Override public Void visitFunctionBlock(CCompilerParser.FunctionBlockContext ctx) {
+        incIndent();
+        visitChildren(ctx);
+        decIndent();
+        return null;
+    }
+
+
+    // @Override public Void visitFunctionType(CCompilerParser.FunctionTypeContext ctx) { return visitChildren(ctx); }
+
+    // @Override public Void visitFunctionName(CCompilerParser.FunctionNameContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitFunctionParams(CCompilerParser.FunctionParamsContext ctx) {
+        List<CCompilerParser.ParamContext> params = ctx.param();
+        for(int i = 0 ; i < params.size() ; i ++){
+            if(i > 0){
+                append(", ");
+            }
+            visit(params.get(i));
+        }
+        return null;
+    }
+
+    @Override public Void visitParam(CCompilerParser.ParamContext ctx) {
+        append(ctx.IDENTIFIER().getText());
+        return null;
+    }
+
+    @Override public Void visitControlExpression(CCompilerParser.ControlExpressionContext ctx) {
+        appendLine("");
         return visitChildren(ctx);
     }
 
-    @Override public Void visitFunctionBlock(CCompilerParser.FunctionBlockContext ctx) { return visitChildren(ctx); }
-
-    @Override public Void visitFunctionType(CCompilerParser.FunctionTypeContext ctx) { return visitChildren(ctx); }
-
-    @Override public Void visitFunctionName(CCompilerParser.FunctionNameContext ctx) { return visitChildren(ctx); }
-
-    @Override public Void visitFunctionParams(CCompilerParser.FunctionParamsContext ctx) { return visitChildren(ctx); }
-
-    @Override public Void visitParam(CCompilerParser.ParamContext ctx) { return visitChildren(ctx); }
-
-    @Override public Void visitControlExpression(CCompilerParser.ControlExpressionContext ctx) { return visitChildren(ctx); }
-
-    @Override public Void visitForExpression(CCompilerParser.ForExpressionContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitForExpression(CCompilerParser.ForExpressionContext ctx) { return visitChildren(ctx); } // to do
 
     @Override public Void visitForTitle(CCompilerParser.ForTitleContext ctx) { return visitChildren(ctx); }
 
-    @Override public Void visitBlock(CCompilerParser.BlockContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitBlock(CCompilerParser.BlockContext ctx) {
+        incIndent();
+        visitChildren(ctx);
+        decIndent();
+        return null;
+    }
 
-    @Override public Void visitReturnExpression(CCompilerParser.ReturnExpressionContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitReturnExpression(CCompilerParser.ReturnExpressionContext ctx) {
+        appendLine("return ");
+        visitChildren(ctx);
+        endLine();
+        return null;
+    }
 
-    @Override public Void visitWhileExpression(CCompilerParser.WhileExpressionContext ctx) { return visitChildren(ctx); }
+    // @Override public Void visitWhileExpression(CCompilerParser.WhileExpressionContext ctx) { return visitChildren(ctx); }
 
-    @Override public Void visitWhileTitle(CCompilerParser.WhileTitleContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitWhileTitle(CCompilerParser.WhileTitleContext ctx) {
+        append("while ");
+        visitChildren(ctx);
+        endLine(":");
+        return  null;
+    }
 
-    @Override public Void visitIfExpression(CCompilerParser.IfExpressionContext ctx) { return visitChildren(ctx); }
+    //@Override public Void visitIfExpression(CCompilerParser.IfExpressionContext ctx) { return visitChildren(ctx); }
 
-    @Override public Void visitIfTitle(CCompilerParser.IfTitleContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitIfTitle(CCompilerParser.IfTitleContext ctx) {
+        append("if ");
+        visitChildren(ctx);
+        endLine(":");
+        return  null;
+    }
 
-    @Override public Void visitElseifTitle(CCompilerParser.ElseifTitleContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitElseifTitle(CCompilerParser.ElseifTitleContext ctx) {
+        append("elif ");
+        visitChildren(ctx);
+        endLine(":");
+        return  null;
+    }
 
-    @Override public Void visitDefineExpression(CCompilerParser.DefineExpressionContext ctx) { return visitChildren(ctx); }
 
-    @Override public Void visitVariableName(CCompilerParser.VariableNameContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitElseTitle(CCompilerParser.ElseTitleContext ctx) {
+        appendLine("");
+        endLine("else: ");
+        return null;
+    }
 
-    @Override public Void visitVarDefineWithInit(CCompilerParser.VarDefineWithInitContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitDefineExpression(CCompilerParser.DefineExpressionContext ctx) {
+        appendLine("");
+        return visitChildren(ctx);
+    }
 
-    @Override public Void visitVarDefineWithoutInit(CCompilerParser.VarDefineWithoutInitContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitVariableName(CCompilerParser.VariableNameContext ctx) {
+        append(ctx.getText());
+        return null;
+    }
 
-    @Override public Void visitArrayDefine(CCompilerParser.ArrayDefineContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitVarDefineWithInit(CCompilerParser.VarDefineWithInitContext ctx) {
+        append(ctx.IDENTIFIER().getText() + " = ");
+        visitChildren(ctx);
+        endLine();
+        return null;
+    }
 
-    @Override public Void visitAssignExpression(CCompilerParser.AssignExpressionContext ctx) { return visitChildren(ctx); }
+    //@Override public Void visitVarDefineWithoutInit(CCompilerParser.VarDefineWithoutInitContext ctx) { return visitChildren(ctx); }
 
-    @Override public Void visitValueExpression(CCompilerParser.ValueExpressionContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitArrayDefine(CCompilerParser.ArrayDefineContext ctx) { return visitChildren(ctx); } //to do
 
-    @Override public Void visitVExpr(CCompilerParser.VExprContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitBinaryAssign(CCompilerParser.BinaryAssignContext ctx) {
+        appendLine("");
+        visit(ctx.variableName());
+        append(" = ");
+        visit(ctx.valueExpression());
+        endLine();
+        return null;
+    }
 
-    @Override public Void visitCExpr(CCompilerParser.CExprContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitUnaryAssign(CCompilerParser.UnaryAssignContext ctx) {
+        appendLine("");
+        visitChildren(ctx);
+        endLine(ctx.op.getText());
+        return null;
+    }
 
-    @Override public Void visitCallExpression(CCompilerParser.CallExpressionContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitCallAssign(CCompilerParser.CallAssignContext ctx) {
+        appendLine("");
+        visitChildren(ctx);
+        endLine();
+        return null;
+    }
 
-    @Override public Void visitCallParam(CCompilerParser.CallParamContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitValueExpression(CCompilerParser.ValueExpressionContext ctx) { return visitChildren(ctx); } //to do
+
+    @Override public Void visitVarVExpr(CCompilerParser.VarVExprContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitConstVExpr(CCompilerParser.ConstVExprContext ctx) {
+        append(ctx.getText());
+        return null;
+    }
+
+    @Override public Void visitBinaryVExpr(CCompilerParser.BinaryVExprContext ctx) {
+        visit(ctx.vExpr(0));
+        append(ctx.op.getText());
+        visit(ctx.vExpr(1));
+        return null;
+    }
+
+    @Override public Void visitCallVExpr(CCompilerParser.CallVExprContext ctx) { return visitChildren(ctx); }
+
+
+
+    @Override public Void visitCExpr(CCompilerParser.CExprContext ctx) {
+        List<CCompilerParser.CunitExprContext> param = ctx.cunitExpr();
+        for(int i = 0 ; i < param.size() ; i ++) {
+            if (i > 0) {
+                append(ctx.op.getText());
+            }
+            visit(param.get(i));
+        }
+        return null;
+    }
+
+    @Override public Void visitCunitExpr(CCompilerParser.CunitExprContext ctx) {
+        visit(ctx.vExpr(0));
+        append(ctx.op.getText());
+        visit(ctx.vExpr(1));
+        return null;
+    }
+
+    @Override public Void visitCallExpression(CCompilerParser.CallExpressionContext ctx) {
+        append(ctx.IDENTIFIER().getText() + '(');
+        visitChildren(ctx);
+        append(")");
+        return null;
+    }
+
+    @Override public Void visitCallParam(CCompilerParser.CallParamContext ctx) {
+        List<CCompilerParser.ValueExpressionContext> param = ctx.valueExpression();
+        for(int i = 0 ; i < param.size() ; i ++) {
+            if (i > 0) {
+                append(", ");
+            }
+            visit(param.get(i));
+        }
+        return null;
+    }
 }
