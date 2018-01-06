@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.List;
 import java.util.Scanner;
@@ -70,5 +69,43 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         indent = indent.substring(0, indent.length() - 2);
     }
 
+    @Override public Void visitProg(CCompilerParser.ProgContext ctx) { return visitChildren(ctx); }
 
+    @Override public Void visitPretreatment(CCompilerParser.PretreatmentContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitPresentence(CCompilerParser.PresentenceContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitFunc_def(CCompilerParser.Func_defContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitFunc_block(CCompilerParser.Func_blockContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitStatement(CCompilerParser.StatementContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitRet(CCompilerParser.RetContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitReturn_val(CCompilerParser.Return_valContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitDeclaration(CCompilerParser.DeclarationContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitFunc_declaration(CCompilerParser.Func_declarationContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitFunc_type(CCompilerParser.Func_typeContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitFunc_name(CCompilerParser.Func_nameContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitFunc_param(CCompilerParser.Func_paramContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitParam_type(CCompilerParser.Param_typeContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitParam_name(CCompilerParser.Param_nameContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitVar_declaration(CCompilerParser.Var_declarationContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitVar_type(CCompilerParser.Var_typeContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitVar_name(CCompilerParser.Var_nameContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitVar_value_int(CCompilerParser.Var_value_intContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitVar_value_char(CCompilerParser.Var_value_charContext ctx) { return visitChildren(ctx); }
 }
