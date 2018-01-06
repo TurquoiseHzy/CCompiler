@@ -1,71 +1,99 @@
 grammar CCompiler;
 
-prog : (pretreatment | declaration | func_def )* EOF;
+prog : ( preTreatment | globalTreatment | functionTreatment )* EOF;
 
-pretreatment : '#' presentence;
+preTreatment : '#' 'include' '<' IDENTIFIER ('.h')? '>'; //ignore
 
-presentence : 'include';
+globalTreatment : defineExpression ';' ;
 
-func_def : func_type func_name '(' func_param ')' func_block;
+functionTreatment : functionDefine | functionDeclare;
 
-func_block : '{' statement* '}';
+functionDeclare : functionTitle ';' ;
 
-statement :  var_declaration | ret ;
+functionDefine : functionTitle functionBlock ;
 
-ret : RETURN return_val ';' ;
+functionTitle : functionType functionName '(' functionParams ')';
 
-return_val : INTVALUE | CHARVALUE ;
+functionBlock : '{' ( (defineExpression ';') | controlExpression | assignExpression ';' | returnExpression';' )*  '}' ;
 
-declaration : func_declaration | var_declaration;
+functionType : TYPE | VOID ;
 
-func_declaration : func_type func_name '(' func_param ')' ';' ;
+functionName : IDENTIFIER ;
 
-func_type : TYPE | VOID;
+functionParams : param (',' param)*
+				| ;
 
-func_name : IDENTIFIER;
+param : TYPE IDENTIFIER ;
 
-func_param : param_type param_name? (',' param_type param_name?)*  //has name?
-            | ;
+controlExpression : forExpression | ifExpression | whileExpression ;
 
-param_type : TYPE;
+forExpression : forTitle block;
 
-param_name : IDENTIFIER;
+forTitle : FOR '(' assignExpression ';' valueExpression ';' assignExpression ')' ;
 
-var_declaration : var_type var_name ('='(
-{$var_type.text == "int"}? (var_value_int) |
-{$var_type.text == "char"}? (var_value_char) )
-)? ';' ;
+block : '{' ( (defineExpression ';') | controlExpression | assignExpression ';' | returnExpression ';' )* '}'
+		| ( (defineExpression ';') | controlExpression | assignExpression ';' | returnExpression ';' );
 
-var_type : TYPE;
+returnExpression : RETURN valueExpression;
 
-var_name : IDENTIFIER;
+whileExpression : whileTitle block;
 
-var_value_int : INTVALUE;
+whileTitle : WHILE '(' valueExpression ')' ;
 
-var_value_char : '\'' CHARVALUE '\'';
+ifExpression : ifTitle block ( elseifTitle block )* ( ELSE block )? ;
 
-//for
+ifTitle : IF '(' valueExpression ')' ;
+
+elseifTitle : ELSEIF '(' valueExpression ')' ;
+
+defineExpression : variableDefine | arrayDefine ;
+
+variableName : IDENTIFIER
+            | IDENTIFIER'[' (variableName | CONSTANT )']';
+
+variableDefine : TYPE IDENTIFIER '=' valueExpression # varDefineWithInit
+				| TYPE IDENTIFIER # varDefineWithoutInit;
+
+arrayDefine : TYPE IDENTIFIER '[' CONSTANT ']' ; //to think
+
+assignExpression : variableName '=' valueExpression
+				|  IDENTIFIER op = ('++' | '--')
+				|  callExpression;
+
+valueExpression : vExpr | cExpr | STRING | CHARVAL;
+
+vExpr :   vExpr ('+' | '-' | '*' | '/' |'+=' | '-=' | '*=' | '/=' | '%' | '%=') vExpr
+		| callExpression
+		| variableName
+		| CONSTANT ;
+
+cExpr : vExpr ('>=' | '>' | '<' | '<=' | '==' | '!=' ) vExpr;
+
+callExpression : IDENTIFIER '(' callParam ')';
+
+callParam : (valueExpression) (',' valueExpression )*
+			| ;
 
 
-// words;
+TYPE : INT | CHAR | BOOL | LONG | CHARSTAR;
 
-TYPE : INT | CHAR;
-
-
-INT : 'int';
-
+CHARSTAR : 'char*';
 VOID : 'void';
-
+INT : 'int';
 CHAR : 'char';
+BOOL : 'bool';
+LONG : 'long';
 
+FOR : 'for';
+IF : 'if';
+WHILE : 'while';
+ELSE : 'else';
+ELSEIF : 'else if';
+RETURN : 'return';
 
-INTVALUE : [0-9]+;
-
-CHARVALUE : [a-z];
-
+CONSTANT: [0-9]+ ('.' [0-9]+)? ;
 IDENTIFIER: [a-zA-Z_] [a-zA-Z0-9_]* ;
+STRING: '"' (~["])* '"' ;
+CHARVAL : '\'' (~[']) '\'';
+WS : [ \t\r\n] -> skip;
 
-
-RETURN :  'return';
-
-WS : [ \t\r\n]+ -> skip ;
