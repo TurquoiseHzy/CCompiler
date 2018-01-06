@@ -1,18 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f97f21d-252b-4073-923e-af2751b9be11" name="Default" comment="">
+    <list default="true" id="2f97f21d-252b-4073-923e-af2751b9be11" name="Default" comment="fix bugs;&#10;change IDEA structure">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/gen/CCompiler.tokens" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/gen/CCompilerBaseVisitor.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/gen/CCompilerLexer.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/gen/CCompilerLexer.tokens" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/gen/CCompilerParser.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/gen/CCompilerVisitor.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/CCompiler.tokens" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/target/classes/CCompilerLexer.tokens" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/hello.c" afterPath="$PROJECT_DIR$/hello.c" />
       <change beforePath="$PROJECT_DIR$/mycompiler.iml" afterPath="$PROJECT_DIR$/mycompiler.iml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CCompiler.tokens" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CCompilerBaseVisitor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CCompilerLexer.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CCompilerLexer.tokens" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CCompilerParser.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CCompilerVisitor.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CCompiler.g4" afterPath="$PROJECT_DIR$/src/main/java/CCompiler.g4" />
       <change beforePath="$PROJECT_DIR$/src/main/java/MyCompiler.java" afterPath="$PROJECT_DIR$/src/main/java/MyCompiler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SimpleC.g4" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test.g4" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hello.c" afterPath="$PROJECT_DIR$/src/main/java/hello.c" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerBaseVisitor.class" afterPath="$PROJECT_DIR$/target/classes/CCompilerBaseVisitor.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerLexer.class" afterPath="$PROJECT_DIR$/target/classes/CCompilerLexer.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$DeclarationContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Func_blockContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Func_declarationContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Func_defContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Func_nameContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Func_paramContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Func_typeContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Param_nameContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Param_typeContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$PresentenceContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$PretreatmentContext.class" afterPath="$PROJECT_DIR$/target/classes/CCompilerParser$PretreatmentContext.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$ProgContext.class" afterPath="$PROJECT_DIR$/target/classes/CCompilerParser$ProgContext.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$RetContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Return_valContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$StatementContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Var_declarationContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Var_nameContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Var_typeContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Var_value_charContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser$Var_value_intContext.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerParser.class" afterPath="$PROJECT_DIR$/target/classes/CCompilerParser.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CCompilerVisitor.class" afterPath="$PROJECT_DIR$/target/classes/CCompilerVisitor.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MyCompiler.class" afterPath="$PROJECT_DIR$/target/classes/MyCompiler.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,13 +52,61 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/CCompiler$MyCompiler.coverage" NAME="MyCompiler Coverage Results" MODIFIED="1515229748780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="MyCompiler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MyCompiler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="264">
+              <caret line="168" column="20" lean-forward="false" selection-start-line="168" selection-start-column="20" selection-end-line="168" selection-end-column="20" />
+              <folding>
+                <element signature="e#427#428#0" expanded="true" />
+                <element signature="e#462#463#0" expanded="true" />
+                <element signature="e#1296#1297#0" expanded="true" />
+                <element signature="e#1331#1332#0" expanded="true" />
+                <element signature="e#1372#1373#0" expanded="true" />
+                <element signature="e#1416#1417#0" expanded="true" />
+                <element signature="e#1454#1455#0" expanded="true" />
+                <element signature="e#1491#1492#0" expanded="true" />
+                <element signature="e#1521#1522#0" expanded="true" />
+                <element signature="e#1548#1549#0" expanded="true" />
+                <element signature="e#1580#1581#0" expanded="true" />
+                <element signature="e#1610#1611#0" expanded="true" />
+                <element signature="e#1642#1643#0" expanded="true" />
+                <element signature="e#1707#1708#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hello.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hello.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-53">
+              <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hello.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hello.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="409">
+              <caret line="75" column="1" lean-forward="false" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hello.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hello.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -38,46 +115,8 @@
       <file leaf-file-name="CCompiler.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/CCompiler.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyCompiler.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/MyCompiler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="109" column="4" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#419#420#0" expanded="true" />
-                <element signature="e#454#455#0" expanded="true" />
-                <element signature="e#1316#1317#0" expanded="true" />
-                <element signature="e#1351#1352#0" expanded="true" />
-                <element signature="e#1392#1393#0" expanded="true" />
-                <element signature="e#1438#1439#0" expanded="true" />
-                <element signature="e#1478#1479#0" expanded="true" />
-                <element signature="e#1512#1513#0" expanded="true" />
-                <element signature="e#1550#1551#0" expanded="true" />
-                <element signature="e#1587#1588#0" expanded="true" />
-                <element signature="e#1617#1618#0" expanded="true" />
-                <element signature="e#1644#1645#0" expanded="true" />
-                <element signature="e#1676#1677#0" expanded="true" />
-                <element signature="e#1706#1707#0" expanded="true" />
-                <element signature="e#1738#1739#0" expanded="true" />
-                <element signature="e#1803#1804#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CCompilerVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gen/CCompilerVisitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            <state relative-caret-position="30">
+              <caret line="2" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -93,28 +132,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CCompilerBaseVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gen/CCompilerBaseVisitor.java">
+      <file leaf-file-name="CCompilerVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gen/CCompilerVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="151" column="116" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="151" selection-end-column="116" />
+            <state relative-caret-position="240">
+              <caret line="16" column="46" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CCompilerLexer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gen/CCompilerLexer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="compiler.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
+      <file leaf-file-name="CCompilerLexer.tokens" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gen/CCompilerLexer.tokens">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -123,11 +152,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <file leaf-file-name="CCompilerBaseVisitor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gen/CCompilerBaseVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1764">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="144">
+              <caret line="278" column="4" lean-forward="false" selection-start-line="277" selection-start-column="4" selection-end-line="278" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CCompilerParser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gen/CCompilerParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="23" column="45" lean-forward="false" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -139,13 +178,30 @@
     <findStrings>
       <find>RETURN</find>
       <find>T</find>
+      <find>var_declaration</find>
+      <find>vardefExpr</find>
+      <find>INSTANT</find>
+      <find>T</find>
+      <find>(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/|[ \t]*//.*)</find>
+      <find>assign</find>
+      <find>unary</find>
+      <find>if</find>
+      <find>un</find>
+      <find>vexpr</find>
+      <find>cunit</find>
+      <find>else</find>
     </findStrings>
     <replaceStrings>
       <replace>Void</replace>
+      <replace>vardefExpr</replace>
+      <replace>varDefExpr</replace>
+      <replace>CONSTANT</replace>
       <replace>Void</replace>
+      <replace />
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
@@ -156,15 +212,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Test.g4" />
         <option value="$PROJECT_DIR$/src/main/java/SimpleC.g4" />
         <option value="$PROJECT_DIR$/src/main/java/CCompilerParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/CCompilerLexer.java" />
-        <option value="$PROJECT_DIR$/hello.c" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/CCompiler.g4" />
         <option value="$PROJECT_DIR$/src/gen/CCompiler/CCompilerVisitor.java" />
         <option value="$PROJECT_DIR$/src/gen/CCompiler/CCompilerBaseVisitor.java" />
+        <option value="$PROJECT_DIR$/hello.py" />
+        <option value="$PROJECT_DIR$/src/main/java/Test.g4" />
+        <option value="$PROJECT_DIR$/src/main/java/hello.c" />
+        <option value="$PROJECT_DIR$/src/main/java/CCompiler.g4" />
+        <option value="$PROJECT_DIR$/hello.c" />
         <option value="$PROJECT_DIR$/src/main/java/MyCompiler.java" />
       </list>
     </option>
@@ -191,6 +249,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -201,7 +263,7 @@
             <path>
               <item name="CCompiler" type="b2602c69:ProjectViewProjectNode" />
               <item name="CCompiler" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="gen" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CCompiler" type="b2602c69:ProjectViewProjectNode" />
@@ -227,31 +289,10 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="CCompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CCompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CCompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CCompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CCompiler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CCompiler" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="generated-sources" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -267,7 +308,7 @@
     <property name="$PROJECT_DIR$/src/main/java/SimpleC.g4::/gen-listener" value="true" />
     <property name="$PROJECT_DIR$/src/main/java/SimpleC.g4::/gen-visitor" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -403,6 +444,35 @@
       <option name="presentableId" value="Default" />
       <updated>1515153139860</updated>
     </task>
+    <task id="LOCAL-00001" summary="fix bugs;&#10;change IDEA structure">
+      <created>1515227760053</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1515227760053</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Indent &amp; func_call">
+      <created>1515230793691</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1515230793691</updated>
+    </task>
+    <task id="LOCAL-00003" summary="finish .g4">
+      <created>1515242336960</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1515242336960</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Version1">
+      <created>1515245957108</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1515245957108</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -411,188 +481,81 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294964" sideWeight="0.4942857" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32805756" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32805756" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32805756" sideWeight="0.49" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.505036" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32805756" sideWeight="0.51" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32805756" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
-      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294964" sideWeight="0.49714285" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294964" sideWeight="0.50285715" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32805756" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32805756" sideWeight="0.49714285" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix bugs;&#10;change IDEA structure" />
+    <MESSAGE value="Indent &amp; func_call" />
+    <MESSAGE value="finish .g4" />
+    <MESSAGE value="Version1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13395">
-          <caret line="893" column="191" lean-forward="false" selection-start-line="893" selection-start-column="191" selection-end-line="893" selection-end-column="191" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyCompiler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#454#455#0" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1351#1352#0" expanded="true" />
-            <element signature="e#1392#1393#0" expanded="true" />
-            <element signature="e#1438#1439#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1550#1551#0" expanded="true" />
-            <element signature="e#1587#1588#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
-            <element signature="e#1676#1677#0" expanded="true" />
-            <element signature="e#1706#1707#0" expanded="true" />
-            <element signature="e#1738#1739#0" expanded="true" />
-            <element signature="e#1803#1804#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Test.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SimpleC.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="82" column="10" lean-forward="false" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MyCompiler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#454#455#0" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1351#1352#0" expanded="true" />
-            <element signature="e#1392#1393#0" expanded="true" />
-            <element signature="e#1438#1439#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1550#1551#0" expanded="true" />
-            <element signature="e#1587#1588#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
-            <element signature="e#1676#1677#0" expanded="true" />
-            <element signature="e#1706#1707#0" expanded="true" />
-            <element signature="e#1738#1739#0" expanded="true" />
-            <element signature="e#1803#1804#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerLexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1672">
-          <caret line="99" column="81" lean-forward="true" selection-start-line="99" selection-start-column="81" selection-end-line="99" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hello.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hello.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15048">
-          <caret line="893" column="191" lean-forward="true" selection-start-line="893" selection-start-column="191" selection-end-line="893" selection-end-column="191" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/output/CCompilerLexer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/CCompiler.g4">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1273">
@@ -617,36 +580,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SimpleC.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="97" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SimpleC.g4" />
     <entry file="file://$PROJECT_DIR$/src/main/java/MyCompiler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#454#455#0" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1351#1352#0" expanded="true" />
-            <element signature="e#1392#1393#0" expanded="true" />
-            <element signature="e#1438#1439#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1550#1551#0" expanded="true" />
-            <element signature="e#1587#1588#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
-            <element signature="e#1676#1677#0" expanded="true" />
-            <element signature="e#1706#1707#0" expanded="true" />
-            <element signature="e#1738#1739#0" expanded="true" />
-            <element signature="e#1803#1804#0" expanded="true" />
+            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#1296#1297#0" expanded="true" />
+            <element signature="e#1331#1332#0" expanded="true" />
+            <element signature="e#1372#1373#0" expanded="true" />
+            <element signature="e#1416#1417#0" expanded="true" />
+            <element signature="e#1454#1455#0" expanded="true" />
+            <element signature="e#1491#1492#0" expanded="true" />
+            <element signature="e#1521#1522#0" expanded="true" />
+            <element signature="e#1548#1549#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1610#1611#0" expanded="true" />
+            <element signature="e#1642#1643#0" expanded="true" />
+            <element signature="e#1707#1708#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -675,36 +628,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SimpleC.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="97" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SimpleC.g4" />
     <entry file="file://$PROJECT_DIR$/src/main/java/MyCompiler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#454#455#0" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1351#1352#0" expanded="true" />
-            <element signature="e#1392#1393#0" expanded="true" />
-            <element signature="e#1438#1439#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1550#1551#0" expanded="true" />
-            <element signature="e#1587#1588#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
-            <element signature="e#1676#1677#0" expanded="true" />
-            <element signature="e#1706#1707#0" expanded="true" />
-            <element signature="e#1738#1739#0" expanded="true" />
-            <element signature="e#1803#1804#0" expanded="true" />
+            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#1296#1297#0" expanded="true" />
+            <element signature="e#1331#1332#0" expanded="true" />
+            <element signature="e#1372#1373#0" expanded="true" />
+            <element signature="e#1416#1417#0" expanded="true" />
+            <element signature="e#1454#1455#0" expanded="true" />
+            <element signature="e#1491#1492#0" expanded="true" />
+            <element signature="e#1521#1522#0" expanded="true" />
+            <element signature="e#1548#1549#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1610#1611#0" expanded="true" />
+            <element signature="e#1642#1643#0" expanded="true" />
+            <element signature="e#1707#1708#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -717,39 +660,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Test.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/output/CCompilerLexer.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/SimpleC.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="82" column="10" lean-forward="false" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hello.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hello.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SimpleC.g4" />
     <entry file="file://$PROJECT_DIR$/src/output/CCompilerVisitor.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -759,51 +671,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15315">
-          <caret line="1021" column="191" lean-forward="false" selection-start-line="1021" selection-start-column="191" selection-end-line="1021" selection-end-column="191" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
-          <caret line="130" column="69" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="130" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerBaseVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="22" column="66" lean-forward="true" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerLexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="102" column="81" lean-forward="false" selection-start-line="102" selection-start-column="81" selection-end-line="102" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerLexer.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerParser.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerBaseVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerLexer.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerLexer.tokens" />
     <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1515241479000" expanded="true" signature="530:618" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -815,15 +694,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerBaseListener.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/CCompilerBaseListener.java" />
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompiler.tokens" />
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerBaseListener.java" />
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerListener.java" />
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerBaseVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerLexer.tokens" />
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerParser.java" />
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerVisitor.java" />
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerLexer.java" />
+    <entry file="file://$PROJECT_DIR$/target/classes/CCompilerVisitor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompiler.tokens">
+    <entry file="file://$PROJECT_DIR$/target/classes/CCompilerLexer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/CCompilerBaseVisitor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1515245806000" expanded="false" signature="3:117" ph="/.../" />
+            <marker date="1515245806000" expanded="true" signature="286:309" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="367:390" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="464:487" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="559:582" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="648:671" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="741:764" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="832:855" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="911:934" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1004:1027" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1099:1122" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1204:1227" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1295:1318" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1386:1409" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1479:1502" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1572:1595" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1665:1688" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1768:1791" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1857:1880" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="1946:1969" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="2045:2068" ph="{}" />
+            <marker date="1515245806000" expanded="true" signature="4142:4165" ph="{}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mycompiler.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -831,39 +756,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerBaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CCompiler.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerBaseVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerLexer.tokens">
+    <entry file="file://$PROJECT_DIR$/target/classes/CCompiler.tokens">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -871,34 +764,173 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="7" lean-forward="false" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler/CCompilerLexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler.tokens">
+    <entry file="file://$PROJECT_DIR$/target/classes/CCompilerParser.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1515245805000" expanded="false" signature="3:117" ph="/.../" />
+            <marker date="1515245805000" expanded="true" signature="2339:2369" ph="/**...*/" />
+            <marker date="1515245805000" expanded="true" signature="7909:7939" ph="/**...*/" />
+            <marker date="1515245805000" expanded="true" signature="8012:8035" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="8096:8119" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="8170:8193" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="8240:8263" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="8312:8335" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="8386:8409" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="8478:8501" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="8604:8627" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="8746:8769" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="8886:8909" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="9020:9043" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="9158:9181" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="9294:9317" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="9418:9441" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="9556:9579" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="9696:9719" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="9846:9869" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="9982:10005" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="10118:10141" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="10256:10279" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="10394:10417" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="10532:10555" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="10680:10703" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="10814:10837" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="10948:10971" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="11092:11115" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="11238:11261" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="11364:11387" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="11498:11521" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="11616:12018" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="11684:11707" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="11812:11835" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="11871:11894" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="11989:12012" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="12112:12512" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="12179:12202" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="12306:12329" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="12365:12388" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="12483:12506" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="12601:12998" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="12670:12693" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="12792:12815" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="12851:12874" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="12969:12992" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="13087:13478" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="13150:13173" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="13272:13295" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="13331:13354" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="13449:13472" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="13574:14298" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="13692:13715" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="13775:13798" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="13868:13891" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="13963:13986" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="14092:14115" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="14151:14174" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="14269:14292" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="14389:14788" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="14458:14481" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="14582:14605" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="14641:14664" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="14759:14782" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="14879:15272" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="14942:14965" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="15066:15089" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="15125:15148" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="15243:15266" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="15363:16060" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="15443:15466" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="15535:15558" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="15638:15661" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="15730:15753" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="15854:15877" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="15913:15936" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="16031:16054" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="16150:16548" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="16219:16242" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="16342:16365" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="16401:16424" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="16519:16542" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="16638:17116" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="16701:16724" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="16787:16810" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="16910:16933" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="16969:16992" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="17087:17110" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="17213:17783" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="17275:17298" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="17360:17383" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="17447:17470" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="17577:17600" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="17636:17659" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="17754:17777" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="17875:18379" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="17951:17974" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="18048:18071" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="18173:18196" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="18232:18255" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="18350:18373" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="18470:18958" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="18537:18560" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="18628:18651" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="18752:18775" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="18811:18834" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="18929:18952" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="19042:19517" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="19107:19130" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="19194:19217" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="19311:19334" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="19370:19393" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="19488:19511" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="19607:20083" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="19681:19704" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="19754:19777" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="19877:19900" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="19936:19959" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="20054:20077" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="20174:20672" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="20252:20275" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="20342:20365" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="20466:20489" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="20525:20548" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="20643:20666" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="20761:21410" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="20823:20846" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="20908:20931" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="20995:21018" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="21082:21105" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="21204:21227" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="21263:21286" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="21381:21404" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="21502:21810" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="21604:21627" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="21663:21686" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="21781:21804" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="21903:22301" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="21969:21992" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="22095:22118" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="22154:22177" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="22272:22295" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="48054:48386" ph="{...}" />
+            <marker date="1515245805000" expanded="true" signature="22448:22471" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="22555:22578" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="22651:22674" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="22756:22779" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="22850:22873" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="22949:22972" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="48062:48085" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="48180:48203" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="48239:48262" ph="{}" />
+            <marker date="1515245805000" expanded="true" signature="48357:48380" ph="{}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gen/TestLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -911,45 +943,114 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Test.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="67" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gen/TestLexer.tokens">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hello.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompiler.tokens">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gen/CCompilerVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        <state relative-caret-position="240">
+          <caret line="16" column="46" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompilerLexer.tokens">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gen/CCompilerParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="23" column="45" lean-forward="false" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gen/CCompilerBaseVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="151" column="116" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="151" selection-end-column="116" />
+        <state relative-caret-position="144">
+          <caret line="278" column="4" lean-forward="false" selection-start-line="277" selection-start-column="4" selection-end-line="278" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/CCompiler.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="75" column="1" lean-forward="false" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/MyCompiler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="109" column="4" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="4" />
+        <state relative-caret-position="264">
+          <caret line="168" column="20" lean-forward="false" selection-start-line="168" selection-start-column="20" selection-end-line="168" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#454#455#0" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1351#1352#0" expanded="true" />
-            <element signature="e#1392#1393#0" expanded="true" />
-            <element signature="e#1438#1439#0" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#1550#1551#0" expanded="true" />
-            <element signature="e#1587#1588#0" expanded="true" />
-            <element signature="e#1617#1618#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
-            <element signature="e#1676#1677#0" expanded="true" />
-            <element signature="e#1706#1707#0" expanded="true" />
-            <element signature="e#1738#1739#0" expanded="true" />
-            <element signature="e#1803#1804#0" expanded="true" />
+            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#1296#1297#0" expanded="true" />
+            <element signature="e#1331#1332#0" expanded="true" />
+            <element signature="e#1372#1373#0" expanded="true" />
+            <element signature="e#1416#1417#0" expanded="true" />
+            <element signature="e#1454#1455#0" expanded="true" />
+            <element signature="e#1491#1492#0" expanded="true" />
+            <element signature="e#1521#1522#0" expanded="true" />
+            <element signature="e#1548#1549#0" expanded="true" />
+            <element signature="e#1580#1581#0" expanded="true" />
+            <element signature="e#1610#1611#0" expanded="true" />
+            <element signature="e#1642#1643#0" expanded="true" />
+            <element signature="e#1707#1708#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hello.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-53">
+          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>

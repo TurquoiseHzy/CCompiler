@@ -40,11 +40,13 @@ whileExpression : whileTitle block;
 
 whileTitle : WHILE '(' valueExpression ')' ;
 
-ifExpression : ifTitle block ( elseifTitle block )* ( ELSE block )? ;
+ifExpression : ifTitle block ( elseifTitle block )* ( elseTitle block )? ;
 
 ifTitle : IF '(' valueExpression ')' ;
 
 elseifTitle : ELSEIF '(' valueExpression ')' ;
+
+elseTitle : ELSE ;
 
 defineExpression : variableDefine | arrayDefine ;
 
@@ -56,18 +58,20 @@ variableDefine : TYPE IDENTIFIER '=' valueExpression # varDefineWithInit
 
 arrayDefine : TYPE IDENTIFIER '[' CONSTANT ']' ; //to think
 
-assignExpression : variableName '=' valueExpression
-				|  IDENTIFIER op = ('++' | '--')
-				|  callExpression;
+assignExpression : variableName '=' valueExpression  #binaryAssign
+				|  variableName op = ('++' | '--')     #unaryAssign
+				|  callExpression                    #callAssign;
 
 valueExpression : vExpr | cExpr | STRING | CHARVAL;
 
-vExpr :   vExpr ('+' | '-' | '*' | '/' |'+=' | '-=' | '*=' | '/=' | '%' | '%=') vExpr
-		| callExpression
-		| variableName
-		| CONSTANT ;
+vExpr :   vExpr op = ('+' | '-' | '*' | '/' |'+=' | '-=' | '*=' | '/=' | '%' | '%=') vExpr  #binaryVExpr
+		| callExpression                                                                    #callVExpr
+		| variableName                                                                      #varVExpr
+		| CONSTANT                                                                         #constVExpr;
 
-cExpr : vExpr ('>=' | '>' | '<' | '<=' | '==' | '!=' ) vExpr;
+cExpr : cunitExpr ( op = ('||' | '&&')  cunitExpr)*;
+
+cunitExpr : (vExpr op = ('>=' | '>' | '<' | '<=' | '==' | '!=' ) vExpr);
 
 callExpression : IDENTIFIER '(' callParam ')';
 
@@ -75,8 +79,9 @@ callParam : (valueExpression) (',' valueExpression )*
 			| ;
 
 
-TYPE : INT | CHAR | BOOL | LONG | CHARSTAR;
+TYPE : INT | CHAR | BOOL | LONG | CHARSTAR | INTSTAR;
 
+INTSTAR : 'int*';
 CHARSTAR : 'char*';
 VOID : 'void';
 INT : 'int';
@@ -91,7 +96,7 @@ ELSE : 'else';
 ELSEIF : 'else if';
 RETURN : 'return';
 
-CONSTANT: [0-9]+ ('.' [0-9]+)? ;
+CONSTANT: [-]? [0-9]+ ('.' [0-9]+)? ;
 IDENTIFIER: [a-zA-Z_] [a-zA-Z0-9_]* ;
 STRING: '"' (~["])* '"' ;
 CHARVAL : '\'' (~[']) '\'';
