@@ -190,7 +190,11 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     //@Override public Void visitVarDefineWithoutInit(CCompilerParser.VarDefineWithoutInitContext ctx) { return visitChildren(ctx); }
 
-    @Override public Void visitArrayDefine(CCompilerParser.ArrayDefineContext ctx) { return visitChildren(ctx); } //to do
+    @Override public Void visitArrayDefine(CCompilerParser.ArrayDefineContext ctx) {
+        append(ctx.IDENTIFIER().getText() + '=' + "[0]*" + ctx.CONSTANT().getText());
+        endLine();
+        return visitChildren(ctx);
+    } //to do
 
     @Override public Void visitBinaryAssign(CCompilerParser.BinaryAssignContext ctx) {
         appendLine("");
@@ -204,7 +208,10 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     @Override public Void visitUnaryAssign(CCompilerParser.UnaryAssignContext ctx) {
         appendLine("");
         visitChildren(ctx);
-        endLine(ctx.op.getText());
+        if (ctx.op.getText().equals("++"))
+            endLine(" += 1");
+        else if (ctx.op.getText().equals("--"))
+            endLine(" -= 1");
         return null;
     }
 
@@ -239,7 +246,10 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         List<CCompilerParser.CunitExprContext> param = ctx.cunitExpr();
         for(int i = 0 ; i < param.size() ; i ++) {
             if (i > 0) {
-                append(ctx.op.getText());
+                if (ctx.op.getText().equals("||"))
+                    append(" or ");
+                else
+                    append(" and ");
             }
             visit(param.get(i));
         }
