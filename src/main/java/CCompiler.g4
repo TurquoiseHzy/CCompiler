@@ -1,6 +1,6 @@
 grammar CCompiler;
 
-prog : ( preTreatment | globalTreatment | functionTreatment )* EOF;
+prog : ( preTreatment | globalTreatment | functionTreatment )* EOF;catch[RecognitionException e] { throw e; }
 
 preTreatment : '#' 'include' '<' IDENTIFIER ('.h')? '>'; //ignore
 
@@ -56,13 +56,18 @@ variableName : IDENTIFIER
 variableDefine : TYPE IDENTIFIER '=' valueExpression # varDefineWithInit
 				| TYPE IDENTIFIER # varDefineWithoutInit;
 
-arrayDefine : TYPE IDENTIFIER '[' CONSTANT ']' ; //to think
+arrayDefine : TYPE IDENTIFIER '[' CONSTANT ']' ( '=' ( list | STRING))?; //to think
+
+list : '{' (| CONSTANT (',' CONSTANT)? )'}';
 
 assignExpression : variableName '=' valueExpression  #binaryAssign
 				|  variableName op = ('++' | '--')     #unaryAssign
 				|  callExpression                    #callAssign;
 
-valueExpression : vExpr | cExpr | STRING | CHARVAL;
+valueExpression : vExpr #valExpr
+                | cExpr #cmpExpr
+                | STRING #stringExpr
+                | CHARVAL #charExpr;
 
 vExpr :   vExpr op = ('+' | '-' | '*' | '/' |'+=' | '-=' | '*=' | '/=' | '%' | '%=') vExpr  #binaryVExpr
 		| callExpression                                                                    #callVExpr

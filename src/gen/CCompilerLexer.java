@@ -1,4 +1,4 @@
-// Generated from C:/Users/dlwog/CCompiler/src/main/java\CCompiler.g4 by ANTLR 4.7
+// Generated from E:/mycompiler/CCompiler/src/main/java\CCompiler.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

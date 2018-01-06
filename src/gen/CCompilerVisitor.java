@@ -1,4 +1,4 @@
-// Generated from C:/Users/dlwog/CCompiler/src/main/java\CCompiler.g4 by ANTLR 4.7
+// Generated from E:/mycompiler/CCompiler/src/main/java\CCompiler.g4 by ANTLR 4.7
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -180,6 +180,12 @@ public interface CCompilerVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArrayDefine(CCompilerParser.ArrayDefineContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link CCompilerParser#list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitList(CCompilerParser.ListContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code binaryAssign}
 	 * labeled alternative in {@link CCompilerParser#assignExpression}.
 	 * @param ctx the parse tree
@@ -201,11 +207,33 @@ public interface CCompilerVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCallAssign(CCompilerParser.CallAssignContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CCompilerParser#valueExpression}.
+	 * Visit a parse tree produced by the {@code valExpr}
+	 * labeled alternative in {@link CCompilerParser#valueExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitValueExpression(CCompilerParser.ValueExpressionContext ctx);
+	T visitValExpr(CCompilerParser.ValExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code cmpExpr}
+	 * labeled alternative in {@link CCompilerParser#valueExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCmpExpr(CCompilerParser.CmpExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code stringExpr}
+	 * labeled alternative in {@link CCompilerParser#valueExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringExpr(CCompilerParser.StringExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code charExpr}
+	 * labeled alternative in {@link CCompilerParser#valueExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCharExpr(CCompilerParser.CharExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code varVExpr}
 	 * labeled alternative in {@link CCompilerParser#vExpr}.
