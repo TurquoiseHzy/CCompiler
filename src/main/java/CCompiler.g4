@@ -57,7 +57,7 @@ variableDefine : TYPE IDENTIFIER '=' valueExpression # varDefineWithInit
 arrayDefine : TYPE IDENTIFIER '[' CONSTANT ']' ; //to think
 
 assignExpression : variableName '=' valueExpression
-				|  IDENTIFIER op = ('++' | '--')
+				|  variableName op = ('++' | '--')
 				|  callExpression;
 
 valueExpression : vExpr | cExpr | STRING | CHARVAL;
