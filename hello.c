@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+struct stuct{
+    int a;
+};
 
-void get_next(int* next,char* word,int l)
+typedef int rs;
+
+void get_next(int *next,char *word,int l)
 {
     int i = 0;
     int j = -1;
@@ -21,7 +26,7 @@ void get_next(int* next,char* word,int l)
     }
 }
 
-void str_kmp(int* next, char* text, char* word, int l1, int l2, int* result)
+void str_kmp(int *next, char *text, char *word, int l1, int l2, int* result)
 {
     int i = -1;
     int j = -1;
@@ -52,7 +57,10 @@ int main()
     scanf("%s", word);
     printf("Please enter the text:\n");
     scanf("%s", text);
-
+    stuct tst[200];
+    stuct* pt;
+    pt->a = 1;
+    tst[pt->a].a = 1;
   	int l1 = strlen(text);
   	int l2 = strlen(word);
   	int next[201];

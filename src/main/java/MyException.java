@@ -1,5 +1,5 @@
 
-public class VariableException extends RuntimeException {
+public class MyException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,7 +19,7 @@ public class VariableException extends RuntimeException {
      * @param message
      *            信息描述
      */
-    public VariableException(String message)
+    public MyException(String message)
     {
         super(message);
     }
@@ -32,7 +32,7 @@ public class VariableException extends RuntimeException {
      * @param message
      *            信息描述
      */
-    public VariableException(String errorCode, String message)
+    public MyException(String errorCode, String message)
     {
         this(errorCode, message, true);
     }
@@ -45,7 +45,7 @@ public class VariableException extends RuntimeException {
      * @param message
      *            信息描述
      */
-    public VariableException(String errorCode, String message, Throwable cause)
+    public MyException(String errorCode, String message, Throwable cause)
     {
         this(errorCode, message, cause, true);
     }
@@ -60,7 +60,7 @@ public class VariableException extends RuntimeException {
      * @param propertiesKey
      *            消息是否为属性文件中的Key
      */
-    public VariableException(String errorCode, String message, boolean propertiesKey)
+    public MyException(String errorCode, String message, boolean propertiesKey)
     {
         super(message);
         this.setErrorCode(errorCode);
@@ -75,7 +75,7 @@ public class VariableException extends RuntimeException {
      * @param message
      *            信息描述
      */
-    public VariableException(String errorCode, String message, Throwable cause, boolean propertiesKey)
+    public MyException(String errorCode, String message, Throwable cause, boolean propertiesKey)
     {
         super(message, cause);
         this.setErrorCode(errorCode);
@@ -90,7 +90,7 @@ public class VariableException extends RuntimeException {
      * @param cause
      *            根异常类（可以存入任何异常）
      */
-    public VariableException(String message, Throwable cause)
+    public MyException(String message, Throwable cause)
     {
         super(message, cause);
     }

@@ -45,6 +45,9 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
             e.printStackTrace();
             return ;
         }
+        if(!haveMain){
+            throw new MyException("No Main");
+        }
         outputFile.println("if __name__ == '__main__':");
         outputFile.println("  main()");
 
@@ -78,39 +81,56 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     private boolean inMain = false;
     private boolean printing = false;
     private boolean inFunc = false;
-    private Set<String> local_var_set  = null;
-    private Set<String> global_var_set = null;
-
+    private static boolean haveMain = false;
+    private Map<String,String> local_var_set  = null;
+    private Map<String,String> global_var_set = null;
+    private Map<String,String> struct_map;
+    private Set<String> type_name_set = new HashSet<>();
+    private Map<String,Map<String,String>> type_attr_map = new HashMap<>();
     private void var_def(String varname){
         if(inFunc){
             if((var_check(varname) & 1) != 0){
-                throw new VariableException("variable "+ varname +" redefined!");
+                throw new MyException("variable "+ varname +" redefined!");
             }
-            local_var_set.add(varname);
+            local_var_set.put(varname,"");
         }
         else{
             if((var_check(varname) & 3) != 0){
-                throw new VariableException("variable "+ varname +" redefined!");
+                throw new MyException("variable "+ varname +" redefined!");
             }
-            global_var_set.add(varname);
+            global_var_set.put(varname,"");
+        }
+    }
+
+    private void var_def(String varname,String type){
+        if(inFunc){
+            if((var_check(varname) & 1) != 0){
+                throw new MyException("variable "+ varname +" redefined!");
+            }
+            local_var_set.put(varname,type);
+        }
+        else{
+            if((var_check(varname) & 3) != 0){
+                throw new MyException("variable "+ varname +" redefined!");
+            }
+            global_var_set.put(varname,type);
         }
     }
 
     private int var_check(String varname){
         int res = 0;
-        if(local_var_set.contains(varname)) {
+        if(local_var_set.get(varname) != null) {
             res |= 1;
         }
-        if(global_var_set.contains(varname)){
+        if(global_var_set.get(varname) != null){
             res |= 2;
         }
         return res;
     }
 
-
     private void set_local_init(){
         if (local_var_set == null) {
-            local_var_set = new HashSet();
+            local_var_set = new HashMap<>();
         }
         local_var_set.clear();
     }
@@ -118,9 +138,19 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     private void set_global_init(){
         if (global_var_set == null) {
-            global_var_set = new HashSet();
+            global_var_set = new HashMap<>();
         }
         global_var_set.clear();
+    }
+
+
+    private void type_check(CCompilerParser.ComplexTypeContext type){
+        if(type.myTypeName() == null){
+            return;
+        }
+        if(type_attr_map.get(type.myTypeName().getText()) == null && !type_name_set.contains(type.myTypeName().getText())){
+            throw new MyException("unknown type : " + type.getText());
+        }
     }
 
 
@@ -139,11 +169,9 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     @Override public Void visitFunctionDefine(CCompilerParser.FunctionDefineContext ctx) {
         set_local_init();
-        if(ctx.functionTitle().functionName().getText().equals("main")){
-            inMain = true;
-        }
-        else{
-            inMain = false;
+        inMain = ctx.functionTitle().functionName().getText().equals("main");
+        if(inMain){
+            haveMain = true;
         }
         inFunc = true;
         visitChildren(ctx);
@@ -152,7 +180,50 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         return null;
     }
 
+    @Override public Void visitTypedefTreatment(CCompilerParser.TypedefTreatmentContext ctx) {
+        type_name_set.add(ctx.myTypeName().getText());
+        return null;
+    }
+
+    @Override public Void visitComplexType(CCompilerParser.ComplexTypeContext ctx) {
+        if(ctx.myTypeName() == null){
+            append(ctx.TYPE().getText());
+            return null;
+        }
+        return visit(ctx.myTypeName());
+    }
+
+    @Override public Void visitStructTreatment(CCompilerParser.StructTreatmentContext ctx) {
+        struct_map = new HashMap<>();
+
+        type_attr_map.put(ctx.myTypeName().getText(),struct_map);
+        appendLine("class " + ctx.myTypeName().getText() + ":\n  def __init__(self):\n    return\n\n" );
+        visit(ctx.structblock());
+        return null;
+    }
+
+    @Override public Void visitMyTypeName(CCompilerParser.MyTypeNameContext ctx) {
+        if(!type_name_set.contains(ctx.getText())){
+            throw new MyException("type "+ ctx.IDENTIFIER().getText() +" undefined!");
+        }
+        else{
+            append(ctx.IDENTIFIER().getText());
+        }
+        return visitChildren(ctx);
+    }
+
+    @Override public Void visitStructblock(CCompilerParser.StructblockContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitAttrDefine(CCompilerParser.AttrDefineContext ctx) {
+        String attrtype = ( ctx.complexType().myTypeName() == null ) ? ctx.complexType().TYPE().getText() : ctx.complexType().myTypeName().getText();
+        String attrname = ctx.IDENTIFIER().getText();
+        struct_map.put(attrname,attrtype);
+        return null;
+    }
+
+    
     @Override public Void visitFunctionTitle(CCompilerParser.FunctionTitleContext ctx) {
+        visit(ctx.functionType());
         append("def " + ctx.functionName().getText() + "(");
         visit(ctx.functionParams());
         endLine("):");
@@ -168,7 +239,12 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     }
 
 
-    // @Override public Void visitFunctionType(CCompilerParser.FunctionTypeContext ctx) { return visitChildren(ctx); }
+     @Override public Void visitFunctionType(CCompilerParser.FunctionTypeContext ctx) {
+        if(ctx.VOID() == null) {
+            type_check(ctx.complexType());
+        }
+        return null;
+    }
 
     // @Override public Void visitFunctionName(CCompilerParser.FunctionNameContext ctx) { return visitChildren(ctx); }
 
@@ -184,19 +260,34 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     }
 
     @Override public Void visitParam(CCompilerParser.ParamContext ctx) {
-        var_def(ctx.IDENTIFIER().getText());
+        type_check(ctx.complexType());
+        var_def(ctx.IDENTIFIER().getText(),ctx.complexType().getText());
         append(ctx.IDENTIFIER().getText());
         return null;
     }
 
     @Override public Void visitControlExpression(CCompilerParser.ControlExpressionContext ctx) {
-        appendLine("");
+
         return visitChildren(ctx);
     }
 
-    @Override public Void visitForExpression(CCompilerParser.ForExpressionContext ctx) { return visitChildren(ctx); } // to do
+    @Override public Void visitForExpression(CCompilerParser.ForExpressionContext ctx) {
+        visitForTitle(ctx.forTitle());
+        visitBlock(ctx.block());
+        incIndent();
+        visit(ctx.forTitle().assignExpression(1));
+        decIndent();
+        endLine();
+        return null;
+    }
 
-    @Override public Void visitForTitle(CCompilerParser.ForTitleContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitForTitle(CCompilerParser.ForTitleContext ctx) {
+        visit(ctx.assignExpression(0));
+        appendLine("while ");
+        visit(ctx.valueExpression());
+        endLine(":");
+        return null;
+    }
 
     @Override public Void visitBlock(CCompilerParser.BlockContext ctx) {
         incIndent();
@@ -207,7 +298,7 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     @Override public Void visitReturnExpression(CCompilerParser.ReturnExpressionContext ctx) {
         appendLine("return");
-        if(inMain == false) {
+        if(!inMain) {
             append(" ");
             visitChildren(ctx);
         }
@@ -215,7 +306,10 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         return null;
     }
 
-    // @Override public Void visitWhileExpression(CCompilerParser.WhileExpressionContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitWhileExpression(CCompilerParser.WhileExpressionContext ctx) {
+         appendLine("");
+         return visitChildren(ctx);
+    }
 
     @Override public Void visitWhileTitle(CCompilerParser.WhileTitleContext ctx) {
         append("while ");
@@ -224,7 +318,10 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         return  null;
     }
 
-    //@Override public Void visitIfExpression(CCompilerParser.IfExpressionContext ctx) { return visitChildren(ctx); }
+    @Override public Void visitIfExpression(CCompilerParser.IfExpressionContext ctx) {
+        appendLine("");
+        return visitChildren(ctx);
+    }
 
     @Override public Void visitIfTitle(CCompilerParser.IfTitleContext ctx) {
         append("if ");
@@ -248,49 +345,107 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     }
 
     @Override public Void visitDefineExpression(CCompilerParser.DefineExpressionContext ctx) {
-        appendLine("");
         return visitChildren(ctx);
     }
 
-    @Override public Void visitVariableName(CCompilerParser.VariableNameContext ctx) {
-        if(var_check(ctx.IDENTIFIER().getText()) == 0) {
-            throw new VariableException("variable "+ ctx.IDENTIFIER().getText() +" undefined!");
-        };
+    String typename = "";
 
-        append(ctx.getText());
+    @Override public Void visitVariableName(CCompilerParser.VariableNameContext ctx) {
+        if(ctx.op != null) {
+            visit(ctx.variableName());
+            int len = typename.length();
+            if(typename.charAt(len - 1) == '*'){
+                typename = typename.substring(0,len - 1);
+                if(!ctx.op.getText().equals("->")){
+                    throw new MyException("pointer error (should be ->) :" + ctx.getParent().getText());
+                }
+            }
+            else if(!ctx.op.getText().equals(".")){
+                throw new MyException("pointer error (should be .) :" + ctx.getParent().getText());
+            }
+            if(type_attr_map.get(typename) == null){
+                throw new MyException("type " + typename + " don't have " + ctx.IDENTIFIER().getText() + "in" + ctx.getParent().getText());
+            }
+            String tmp = type_attr_map.get(typename).get(ctx.IDENTIFIER().getText());
+            if(tmp == null){
+                throw new MyException("type " + typename + " don't have " + ctx.IDENTIFIER().getText() + "in" + ctx.getParent().getText());
+            }
+            typename = tmp;
+            append("." + ctx.IDENTIFIER().getText());
+        }
+        else
+        {
+            if (var_check(ctx.IDENTIFIER().getText()) == 0) {
+                throw new MyException("variable " + ctx.IDENTIFIER().getText() + " undefined " + ctx.getParent().getParent().getText());
+            }
+            if(ctx.variableName() != null ){
+                append(ctx.IDENTIFIER().getText() + '[');
+                visit(ctx.variableName());
+                append("]");
+            }
+            else if(ctx.valueExpression() != null ){
+                append(ctx.IDENTIFIER().getText() + '[' );
+                visit(ctx.valueExpression());
+                append("]");
+            }
+            else{
+                append(ctx.getText());
+            }
+            typename = local_var_set.get(ctx.IDENTIFIER().getText());
+            if(typename == null ){
+                typename =  global_var_set.get(ctx.IDENTIFIER().getText());
+            }
+        }
         return null;
     }
 
     @Override public Void visitVarDefineWithInit(CCompilerParser.VarDefineWithInitContext ctx) {
-        var_def(ctx.IDENTIFIER().getText());
-        append(ctx.IDENTIFIER().getText() + " = ");
-        visitChildren(ctx);
-        endLine();
+        type_check(ctx.complexType());
+        var_def(ctx.IDENTIFIER().getText(),ctx.complexType().getText());
+        appendLine(ctx.IDENTIFIER().getText() + " = " );
+        if(ctx.complexType().myTypeName() != null) {
+            visit(ctx.complexType());
+            append("(");
+            visit(ctx.valueExpression());
+            endLine(")");
+        }
+        else{
+            visit(ctx.valueExpression());
+            endLine();
+        }
         return null;
     }
 
+
     @Override public Void visitVarDefineWithoutInit(CCompilerParser.VarDefineWithoutInitContext ctx) {
-        var_def(ctx.IDENTIFIER().getText());
-        append(ctx.IDENTIFIER().getText() + " = None");
-        endLine();
+        type_check(ctx.complexType());
+        var_def(ctx.IDENTIFIER().getText(),ctx.complexType().getText());
+        if(ctx.complexType().myTypeName() != null && type_attr_map.get(ctx.complexType().myTypeName().getText()) != null) {
+            appendLine("");
+            endLine(ctx.IDENTIFIER().getText() + " = " + ctx.complexType().myTypeName().getText() + "()");
+        }
         return null;
     }
 
     @Override public Void visitArrayDefine(CCompilerParser.ArrayDefineContext ctx) {
-        var_def(ctx.IDENTIFIER().getText());
-        if(ctx.TYPE().getText().equals("char")){
-
-            append(ctx.IDENTIFIER().getText() + " = \"" +( (ctx.STRING() != null) ? ctx.STRING() : "") + "\"");
+        type_check(ctx.complexType());
+        var_def(ctx.IDENTIFIER().getText(),ctx.complexType().getText());
+        if(ctx.complexType().TYPE() != null && ctx.complexType().TYPE().getText().equals("char") ){
+            if(ctx.STRING() != null) {
+                appendLine(ctx.IDENTIFIER().getText() + " = " + ctx.STRING());
+                endLine();
+            }
         }
         else if (ctx.list() == null){
-            append(ctx.IDENTIFIER().getText() + " = [0]*" + ctx.CONSTANT().getText());
+            String bit = ctx.complexType().myTypeName() == null ? "0" : ctx.complexType().myTypeName().getText() +"()";
+            appendLine(ctx.IDENTIFIER().getText() + " = [" + bit + "]*" + ctx.CONSTANT().getText());
+            endLine();
         }
         else{
-            append(ctx.IDENTIFIER().getText() + " = ");
+            appendLine(ctx.IDENTIFIER().getText() + " = ");
             visit(ctx.list());
+            endLine();
         }
-
-        endLine();
         return null;
     } //to do
 
@@ -355,12 +510,19 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     @Override public Void visitBinaryVExpr(CCompilerParser.BinaryVExprContext ctx) {
         visit(ctx.vExpr(0));
-        append(ctx.op.getText());
+        append(" " + ctx.op.getText() + " ");
         visit(ctx.vExpr(1));
         return null;
     }
 
     @Override public Void visitCallVExpr(CCompilerParser.CallVExprContext ctx) { return visitChildren(ctx); }
+
+    @Override public Void visitBracketsVExpr(CCompilerParser.BracketsVExprContext ctx) {
+        append("(");
+        visitChildren(ctx);
+        append(")");
+        return null;
+    }
 
     @Override public Void visitCExpr(CCompilerParser.CExprContext ctx) {
         List<CCompilerParser.CunitExprContext> param = ctx.cunitExpr();
@@ -376,12 +538,26 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         return null;
     }
 
-    @Override public Void visitCunitExpr(CCompilerParser.CunitExprContext ctx) {
+    @Override public Void visitBinaryCExpr(CCompilerParser.BinaryCExprContext ctx) {
         visit(ctx.vExpr(0));
         append(" " + ctx.op.getText() + " ");
         visit(ctx.vExpr(1));
         return null;
     }
+
+    @Override public Void visitBracketCExpr(CCompilerParser.BracketCExprContext ctx) {
+        append("(");
+        visit(ctx.cunitExpr());
+        append(")");
+        return null;
+    }
+
+    @Override public Void visitNotCExpr(CCompilerParser.NotCExprContext ctx) {
+        append("not");
+        visit(ctx.cunitExpr());
+        return null;
+    }
+
 
     @Override public Void visitCallExpression(CCompilerParser.CallExpressionContext ctx) {
         if(ctx.IDENTIFIER().getText().equals("printf")){
@@ -415,7 +591,7 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     @Override public Void visitCallParam(CCompilerParser.CallParamContext ctx) {
         List<CCompilerParser.ValueExpressionContext> param = ctx.valueExpression();
-        if(printing == true){
+        if(printing ){
             visit(param.get(0));
             if(param.size() > 1) {
                 append("%(");

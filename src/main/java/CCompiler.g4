@@ -1,10 +1,23 @@
 grammar CCompiler;
 
-prog : ( preTreatment | globalTreatment | functionTreatment )* EOF;catch[RecognitionException e] { throw e; }
+prog : ( preTreatment | globalTreatment | functionTreatment | structTreatment )* EOF;catch[RecognitionException e] { throw e; }
 
 preTreatment : '#' 'include' '<' IDENTIFIER ('.h')? '>'; //ignore
 
-globalTreatment : defineExpression ';' ;
+globalTreatment : defineExpression ';'
+                | typedefTreatment ';';
+
+typedefTreatment : TYPEDEF complexType myTypeName;
+
+complexType : (TYPE | 'STRUCT'? myTypeName) (POINTER)? ;
+
+structTreatment : STRUCT myTypeName? structblock ';';
+
+myTypeName : IDENTIFIER ;
+
+structblock :   '{' attrDefine* '}';
+
+attrDefine :  complexType IDENTIFIER ';' ;
 
 functionTreatment : functionDefine | functionDeclare;
 
@@ -16,14 +29,14 @@ functionTitle : functionType functionName '(' functionParams ')';
 
 functionBlock : '{' ( (defineExpression ';') | controlExpression | assignExpression ';' | returnExpression';' )*  '}' ;
 
-functionType : TYPE | VOID ;
+functionType : complexType | VOID POINTER? ;
 
 functionName : IDENTIFIER ;
 
 functionParams : param (',' param)*
 				| ;
 
-param : TYPE IDENTIFIER ;
+param : complexType IDENTIFIER ;
 
 controlExpression : forExpression | ifExpression | whileExpression ;
 
@@ -51,12 +64,13 @@ elseTitle : ELSE ;
 defineExpression : variableDefine | arrayDefine ;
 
 variableName : IDENTIFIER
-            | IDENTIFIER'[' (variableName | CONSTANT )']';
+            | IDENTIFIER'[' (variableName | valueExpression )']'
+            | variableName op = ('.'|'->') IDENTIFIER;
 
-variableDefine : TYPE IDENTIFIER '=' valueExpression # varDefineWithInit
-				| TYPE IDENTIFIER # varDefineWithoutInit;
+variableDefine : complexType  IDENTIFIER '=' valueExpression # varDefineWithInit
+				| complexType IDENTIFIER # varDefineWithoutInit;
 
-arrayDefine : TYPE IDENTIFIER '[' CONSTANT ']' ( '=' ( list | STRING))?; //to think
+arrayDefine : complexType IDENTIFIER '[' CONSTANT ']' ( '=' ( list | STRING))?; //to think
 
 list : '{' (| CONSTANT (',' CONSTANT)? )'}';
 
@@ -72,11 +86,14 @@ valueExpression : vExpr #valExpr
 vExpr :   vExpr op = ('+' | '-' | '*' | '/' |'+=' | '-=' | '*=' | '/=' | '%' | '%=') vExpr  #binaryVExpr
 		| callExpression                                                                    #callVExpr
 		| variableName                                                                      #varVExpr
-		| CONSTANT                                                                         #constVExpr;
+		| CONSTANT                                                                         #constVExpr
+		| '('  vExpr ')'                                                                   #bracketsVExpr;
 
-cExpr : cunitExpr ( op = ('||' | '&&')  cunitExpr)*;
+cExpr : cunitExpr ( op = ('||' | '&&')  cunitExpr)* ;
 
-cunitExpr : (vExpr op = ('>=' | '>' | '<' | '<=' | '==' | '!=' ) vExpr);
+cunitExpr : (vExpr op = ('>=' | '>' | '<' | '<=' | '==' | '!=' ) vExpr)       #binaryCExpr
+            | '(' cunitExpr ')'                                                 #bracketCExpr
+            |  '!' cunitExpr                                                    #notCExpr;
 
 callExpression : IDENTIFIER '(' callParam ')';
 
@@ -84,10 +101,12 @@ callParam : (valueExpression) (',' valueExpression )*
 			| ;
 
 
-TYPE : INT | CHAR | BOOL | LONG | CHARSTAR | INTSTAR;
+TYPE :  INT | CHAR | BOOL | LONG ;
 
-INTSTAR : 'int*';
-CHARSTAR : 'char*';
+
+STRUCT : 'struct';
+TYPEDEF : 'typedef';
+POINTER : '*';
 VOID : 'void';
 INT : 'int';
 CHAR : 'char';

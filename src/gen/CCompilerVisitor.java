@@ -28,6 +28,42 @@ public interface CCompilerVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGlobalTreatment(CCompilerParser.GlobalTreatmentContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link CCompilerParser#typedefTreatment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedefTreatment(CCompilerParser.TypedefTreatmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CCompilerParser#complexType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComplexType(CCompilerParser.ComplexTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CCompilerParser#structTreatment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructTreatment(CCompilerParser.StructTreatmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CCompilerParser#myTypeName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMyTypeName(CCompilerParser.MyTypeNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CCompilerParser#structblock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructblock(CCompilerParser.StructblockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CCompilerParser#attrDefine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttrDefine(CCompilerParser.AttrDefineContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link CCompilerParser#functionTreatment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -235,6 +271,13 @@ public interface CCompilerVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCharExpr(CCompilerParser.CharExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code bracketsVExpr}
+	 * labeled alternative in {@link CCompilerParser#vExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBracketsVExpr(CCompilerParser.BracketsVExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code varVExpr}
 	 * labeled alternative in {@link CCompilerParser#vExpr}.
 	 * @param ctx the parse tree
@@ -269,11 +312,26 @@ public interface CCompilerVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCExpr(CCompilerParser.CExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link CCompilerParser#cunitExpr}.
+	 * Visit a parse tree produced by the {@code binaryCExpr}
+	 * labeled alternative in {@link CCompilerParser#cunitExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCunitExpr(CCompilerParser.CunitExprContext ctx);
+	T visitBinaryCExpr(CCompilerParser.BinaryCExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code bracketCExpr}
+	 * labeled alternative in {@link CCompilerParser#cunitExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBracketCExpr(CCompilerParser.BracketCExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code notCExpr}
+	 * labeled alternative in {@link CCompilerParser#cunitExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNotCExpr(CCompilerParser.NotCExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CCompilerParser#callExpression}.
 	 * @param ctx the parse tree
