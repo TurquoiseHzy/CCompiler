@@ -1,7 +1,3 @@
-class stuct:
-  def __init__(self):
-    return
-
 def get_next(next, word, l):
   i = 0
   j = -1
@@ -36,14 +32,12 @@ def str_kmp(next, text, word, l1, l2, result):
 
 
 def main():
+  text = ""
+  word = ""
   print("Please enter the keyword:\n",end = '')
   word = input()
   print("Please enter the text:\n",end = '')
   text = input()
-  tst = [stuct()]*200
-  pt = stuct()
-  pt.a = 1
-  tst[pt.a].a = 1
   l1 = len(text)
   l2 = len(word)
   next = [0]*201

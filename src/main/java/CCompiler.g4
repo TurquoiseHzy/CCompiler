@@ -2,7 +2,7 @@ grammar CCompiler;
 
 prog : ( preTreatment | globalTreatment | functionTreatment | structTreatment )* EOF;catch[RecognitionException e] { throw e; }
 
-preTreatment : '#' 'include' '<' IDENTIFIER ('.h')? '>'; //ignore
+preTreatment : '#' 'include' '<' IDENTIFIER ('.h')? '>' | '#' 'include' '"' IDENTIFIER ('.h')? '"'; //ignore
 
 globalTreatment : defineExpression ';'
                 | typedefTreatment ';';
@@ -38,14 +38,14 @@ functionParams : param (',' param)*
 
 param : complexType IDENTIFIER ;
 
-controlExpression : forExpression | ifExpression | whileExpression ;
+controlExpression : forExpression | ifExpression | whileExpression | CONTINUE ';'| BREAK ';';
 
 forExpression : forTitle block;
 
 forTitle : FOR '(' assignExpression ';' valueExpression ';' assignExpression ')' ;
 
-block : '{' ( (defineExpression ';') | controlExpression | assignExpression ';' | returnExpression ';' )* '}'
-		| ( (defineExpression ';') | controlExpression | assignExpression ';' | returnExpression ';' );
+block : '{' ( (defineExpression ';') | controlExpression | assignExpression ';' | returnExpression ';')* '}'
+		| ( (defineExpression ';') | controlExpression | assignExpression ';' | returnExpression ';');
 
 returnExpression : RETURN valueExpression;
 
@@ -87,13 +87,15 @@ vExpr :   vExpr op = ('+' | '-' | '*' | '/' |'+=' | '-=' | '*=' | '/=' | '%' | '
 		| callExpression                                                                    #callVExpr
 		| variableName                                                                      #varVExpr
 		| CONSTANT                                                                         #constVExpr
-		| '('  vExpr ')'                                                                   #bracketsVExpr;
+		| '('  vExpr ')'                                                                   #bracketsVExpr
+		| CHARVAL                                                                           #charVExpr;
 
 cExpr : cunitExpr ( op = ('||' | '&&')  cunitExpr)* ;
 
 cunitExpr : (vExpr op = ('>=' | '>' | '<' | '<=' | '==' | '!=' ) vExpr)       #binaryCExpr
             | '(' cunitExpr ')'                                                 #bracketCExpr
-            |  '!' cunitExpr                                                    #notCExpr;
+            |  '!' cunitExpr                                                    #notCExpr
+            | callExpression                                                    #callCExpr;
 
 callExpression : IDENTIFIER '(' callParam ')';
 
@@ -101,7 +103,7 @@ callParam : (valueExpression) (',' valueExpression )*
 			| ;
 
 
-TYPE :  INT | CHAR | BOOL | LONG ;
+TYPE :  INT | CHAR | BOOL | LONG | DOUBLE;
 
 
 STRUCT : 'struct';
@@ -112,6 +114,7 @@ INT : 'int';
 CHAR : 'char';
 BOOL : 'bool';
 LONG : 'long';
+DOUBLE : 'double';
 
 FOR : 'for';
 IF : 'if';
@@ -119,10 +122,13 @@ WHILE : 'while';
 ELSE : 'else';
 ELSEIF : 'else if';
 RETURN : 'return';
+CONTINUE : 'continue';
+BREAK: 'break';
+
 
 CONSTANT: [-]? [0-9]+ ('.' [0-9]+)? ;
 IDENTIFIER: [a-zA-Z_] [a-zA-Z0-9_]* ;
-STRING: '"' (~["])* '"' ;
-CHARVAL : '\'' (~[']) '\'';
+STRING:  '"'(~["])* '"' ;
+CHARVAL : '\'' (~[']) '\'' | '\'\\n\'' | '\'\\t\'';
 WS : [ \t\r\n] -> skip;
 

@@ -278,6 +278,13 @@ public interface CCompilerVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBracketsVExpr(CCompilerParser.BracketsVExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code charVExpr}
+	 * labeled alternative in {@link CCompilerParser#vExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCharVExpr(CCompilerParser.CharVExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code varVExpr}
 	 * labeled alternative in {@link CCompilerParser#vExpr}.
 	 * @param ctx the parse tree
@@ -332,6 +339,13 @@ public interface CCompilerVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNotCExpr(CCompilerParser.NotCExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code callCExpr}
+	 * labeled alternative in {@link CCompilerParser#cunitExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCallCExpr(CCompilerParser.CallCExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link CCompilerParser#callExpression}.
 	 * @param ctx the parse tree

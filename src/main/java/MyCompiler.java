@@ -28,7 +28,7 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
         System.out.println("Enter the name of the program (without \".c\" extension):");
 
-        name = "hello";
+        name = inputName.next();
         c = new FileInputStream(name + ".c");
         py  = new PrintStream(new File(name + ".py"));
         try {
@@ -87,6 +87,7 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     private Map<String,String> struct_map;
     private Set<String> type_name_set = new HashSet<>();
     private Map<String,Map<String,String>> type_attr_map = new HashMap<>();
+
     private void var_def(String varname){
         if(inFunc){
             if((var_check(varname) & 1) != 0){
@@ -159,14 +160,6 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         return visitChildren(ctx);
     }
 
-   // @Override public Void visitPreTreatment(CCompilerParser.PreTreatmentContext ctx) { return visitChildren(ctx); }
-
-   // @Override public Void visitGlobalTreatment(CCompilerParser.GlobalTreatmentContext ctx) { return visitChildren(ctx); }
-
-   // @Override public Void visitFunctionTreatment(CCompilerParser.FunctionTreatmentContext ctx) { return visitChildren(ctx); }
-
-   // @Override public Void visitFunctionDeclare(CCompilerParser.FunctionDeclareContext ctx) { return visitChildren(ctx); }
-
     @Override public Void visitFunctionDefine(CCompilerParser.FunctionDefineContext ctx) {
         set_local_init();
         inMain = ctx.functionTitle().functionName().getText().equals("main");
@@ -220,7 +213,6 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         struct_map.put(attrname,attrtype);
         return null;
     }
-
     
     @Override public Void visitFunctionTitle(CCompilerParser.FunctionTitleContext ctx) {
         visit(ctx.functionType());
@@ -238,15 +230,12 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         return null;
     }
 
-
      @Override public Void visitFunctionType(CCompilerParser.FunctionTypeContext ctx) {
         if(ctx.VOID() == null) {
             type_check(ctx.complexType());
         }
         return null;
     }
-
-    // @Override public Void visitFunctionName(CCompilerParser.FunctionNameContext ctx) { return visitChildren(ctx); }
 
     @Override public Void visitFunctionParams(CCompilerParser.FunctionParamsContext ctx) {
         List<CCompilerParser.ParamContext> params = ctx.param();
@@ -267,15 +256,29 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     }
 
     @Override public Void visitControlExpression(CCompilerParser.ControlExpressionContext ctx) {
-
-        return visitChildren(ctx);
+        visitChildren(ctx);
+        if(ctx.CONTINUE() != null){
+            if(!syncmd_stack.empty())
+                visit(syncmd_stack.peek());
+            appendLine("continue");
+            endLine();
+        }
+        if(ctx.BREAK() != null){
+            if(!syncmd_stack.empty())
+                visit(syncmd_stack.peek());
+            appendLine("break");
+            endLine();
+        }
+        return null;
     }
 
+    private Stack<CCompilerParser.AssignExpressionContext> syncmd_stack = new Stack<>();
     @Override public Void visitForExpression(CCompilerParser.ForExpressionContext ctx) {
         visitForTitle(ctx.forTitle());
-        visitBlock(ctx.block());
+        syncmd_stack.push(ctx.forTitle().assignExpression(1));
+        visit(ctx.block());
         incIndent();
-        visit(ctx.forTitle().assignExpression(1));
+        visit(syncmd_stack.pop());
         decIndent();
         endLine();
         return null;
@@ -308,7 +311,8 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     @Override public Void visitWhileExpression(CCompilerParser.WhileExpressionContext ctx) {
          appendLine("");
-         return visitChildren(ctx);
+         visitChildren(ctx);
+         return null;
     }
 
     @Override public Void visitWhileTitle(CCompilerParser.WhileTitleContext ctx) {
@@ -348,7 +352,7 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         return visitChildren(ctx);
     }
 
-    String typename = "";
+    private String typename = "";
 
     @Override public Void visitVariableName(CCompilerParser.VariableNameContext ctx) {
         if(ctx.op != null) {
@@ -364,11 +368,11 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
                 throw new MyException("pointer error (should be .) :" + ctx.getParent().getText());
             }
             if(type_attr_map.get(typename) == null){
-                throw new MyException("type " + typename + " don't have " + ctx.IDENTIFIER().getText() + "in" + ctx.getParent().getText());
+                throw new MyException("type " + typename + " don't have " + ctx.IDENTIFIER().getText() );
             }
             String tmp = type_attr_map.get(typename).get(ctx.IDENTIFIER().getText());
             if(tmp == null){
-                throw new MyException("type " + typename + " don't have " + ctx.IDENTIFIER().getText() + "in" + ctx.getParent().getText());
+                throw new MyException("type " + typename + " don't have " + ctx.IDENTIFIER().getText() );
             }
             typename = tmp;
             append("." + ctx.IDENTIFIER().getText());
@@ -376,7 +380,7 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         else
         {
             if (var_check(ctx.IDENTIFIER().getText()) == 0) {
-                throw new MyException("variable " + ctx.IDENTIFIER().getText() + " undefined " + ctx.getParent().getParent().getText());
+                throw new MyException("variable " + ctx.IDENTIFIER().getText() + " undefined ");
             }
             if(ctx.variableName() != null ){
                 append(ctx.IDENTIFIER().getText() + '[');
@@ -429,10 +433,14 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     @Override public Void visitArrayDefine(CCompilerParser.ArrayDefineContext ctx) {
         type_check(ctx.complexType());
-        var_def(ctx.IDENTIFIER().getText(),ctx.complexType().getText());
+        var_def(ctx.IDENTIFIER().getText(),ctx.complexType().getText() + "*");
         if(ctx.complexType().TYPE() != null && ctx.complexType().TYPE().getText().equals("char") ){
             if(ctx.STRING() != null) {
                 appendLine(ctx.IDENTIFIER().getText() + " = " + ctx.STRING());
+                endLine();
+            }
+            else{
+                appendLine(ctx.IDENTIFIER().getText() + " = \"\"" );
                 endLine();
             }
         }
@@ -447,7 +455,7 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
             endLine();
         }
         return null;
-    } //to do
+    }
 
     @Override public Void visitList(CCompilerParser.ListContext ctx) {
         List<TerminalNode> constant= ctx.CONSTANT();
@@ -462,9 +470,46 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         return visitChildren(ctx);
     }
 
+    private int inAssign = 0;
     @Override public Void visitBinaryAssign(CCompilerParser.BinaryAssignContext ctx) {
+        if (var_check(ctx.variableName().IDENTIFIER().getText()) == 0 && ctx.variableName().op == null) {
+            throw new MyException("variable " + ctx.variableName().IDENTIFIER().getText() + " undefined ");
+        }
         appendLine("");
+        inAssign = 1;
+        if(ctx.variableName().op == null ){
+            String type =  local_var_set.get(ctx.variableName().IDENTIFIER().getText());
+            if(type == null){
+                type = global_var_set.get(ctx.variableName().IDENTIFIER().getText());
+            }
+            if(type.equals("char*")){
+                append(ctx.variableName().IDENTIFIER().getText() + " = ");
+                if(ctx.variableName() != null ){
+                    append(ctx.variableName().IDENTIFIER().getText() + "[:" );
+                    visit(ctx.variableName().variableName());
+                    append("] +" );
+                    visit(ctx.valueExpression());
+                    append(" + ");
+                    append(ctx.variableName().IDENTIFIER().getText() + "[1+");
+                    visit(ctx.variableName().variableName());
+                    append(":]");
+                }
+                else if(ctx.valueExpression() != null ){
+                    append(ctx.variableName().IDENTIFIER().getText() + "[:" );
+                    visit(ctx.variableName().valueExpression());
+                    append("] +" );
+                    visit(ctx.valueExpression());
+                    append(" + ");
+                    append(ctx.variableName().IDENTIFIER().getText() + "[1+");
+                    visit(ctx.variableName().valueExpression());
+                    append(":]");
+                }
+                endLine();
+                return null;
+            }
+        }
         visit(ctx.variableName());
+        inAssign = 0;
         append(" = ");
         visit(ctx.valueExpression());
         endLine();
@@ -503,12 +548,25 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
     @Override public Void visitVarVExpr(CCompilerParser.VarVExprContext ctx) { return visitChildren(ctx); }
 
+    @Override public Void visitCharVExpr(CCompilerParser.CharVExprContext ctx) {
+        append(ctx.getText());
+        return visitChildren(ctx);
+    }
+
     @Override public Void visitConstVExpr(CCompilerParser.ConstVExprContext ctx) {
         append(ctx.getText());
         return null;
     }
 
     @Override public Void visitBinaryVExpr(CCompilerParser.BinaryVExprContext ctx) {
+        if(ctx.op.getText().equals("-")){
+            if(ctx.vExpr(1).getText().equals("'0'")) {
+                append("int(");
+                visit(ctx.vExpr(0));
+                append(")");
+                return null;
+            }
+        }
         visit(ctx.vExpr(0));
         append(" " + ctx.op.getText() + " ");
         visit(ctx.vExpr(1));
@@ -539,10 +597,15 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     }
 
     @Override public Void visitBinaryCExpr(CCompilerParser.BinaryCExprContext ctx) {
+
         visit(ctx.vExpr(0));
         append(" " + ctx.op.getText() + " ");
         visit(ctx.vExpr(1));
         return null;
+    }
+
+    @Override public Void visitCallCExpr(CCompilerParser.CallCExprContext ctx) {
+        return visitChildren(ctx);
     }
 
     @Override public Void visitBracketCExpr(CCompilerParser.BracketCExprContext ctx) {
@@ -569,7 +632,25 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
         }
         else if(ctx.IDENTIFIER().getText().equals("scanf")){
             printing = false;
-            append(ctx.callParam().valueExpression(1).getText() + " = input()");
+            String s = ctx.callParam().valueExpression(1).getText();
+            System.out.println(s);
+            append(s.substring(1,s.length() - 1) + " = input()");
+        }
+        else if(ctx.IDENTIFIER().getText().equals("strcmp")){
+            printing = false;
+            visit(ctx.callParam().valueExpression(0));
+            append(" != ");
+            visit(ctx.callParam().valueExpression(1));
+        }
+        else if(ctx.IDENTIFIER().getText().equals("isdigit")){
+            printing = false;
+            visit(ctx.callParam().valueExpression(0));
+            append(".isdigit()");
+        }
+        else if(ctx.IDENTIFIER().getText().equals("gets")){
+            printing = false;
+            visitChildren(ctx);
+            append(" = input()");
         }
         else if(ctx.IDENTIFIER().getText().equals("strlen")){
             printing = false;
