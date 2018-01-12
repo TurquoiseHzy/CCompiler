@@ -9,7 +9,6 @@ int main(){
     mystruct *y;
     int2 z;
     x.attr1 = 10;
-    x.attr4 = 1;
     y->attr2 = 100;
     z = 10;
     return 0;

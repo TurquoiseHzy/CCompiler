@@ -21,6 +21,46 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
     }
 
     public static void main(String args[]) throws IOException {
+        if(true) {
+            Stack<String> nameInFolder = GetFoldFileNames.getFileName();
+            if(nameInFolder == null){
+                System.out.println("error");
+                return;
+            }
+            while (!nameInFolder.empty()) {
+                String name;
+                Scanner inputName = new Scanner(System.in);
+                FileInputStream c;
+                PrintStream py;
+
+                name = nameInFolder.pop();
+                c = new FileInputStream(name);
+                py = new PrintStream(new File(name.substring(0,name.length()-2) + ".py"));
+                try {
+                    ANTLRInputStream input = new ANTLRInputStream(c);
+                    CCompilerLexer lexer = new CCompilerLexer(input);
+                    CommonTokenStream tokens = new CommonTokenStream(lexer);
+                    CCompilerParser parser = new CCompilerParser(tokens);
+                    ParseTree tree = parser.prog();
+
+                    MyCompiler compiler = new MyCompiler(py);
+                    compiler.visit(tree);
+                } catch (RecognitionException e) {
+                    System.out.println(name + ".c ilegal");
+                    e.printStackTrace();
+                    return;
+                }
+                if (!haveMain) {
+                    throw new MyException("No Main");
+                }
+                outputFile.println("if __name__ == '__main__':");
+                outputFile.println("  main()");
+
+                py.flush();
+            }
+            return ;
+        }
+
         String name;
         Scanner inputName = new Scanner(System.in);
         FileInputStream c;
@@ -30,7 +70,7 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
         name = inputName.next();
         c = new FileInputStream(name + ".c");
-        py  = new PrintStream(new File(name + ".py"));
+        py = new PrintStream(new File(name + ".py"));
         try {
             ANTLRInputStream input = new ANTLRInputStream(c);
             CCompilerLexer lexer = new CCompilerLexer(input);
@@ -40,12 +80,12 @@ public class MyCompiler extends CCompilerBaseVisitor<Void>{
 
             MyCompiler compiler = new MyCompiler(py);
             compiler.visit(tree);
-        } catch (RecognitionException e ){
+        } catch (RecognitionException e) {
             System.out.println(name + ".c ilegal");
             e.printStackTrace();
-            return ;
+            return;
         }
-        if(!haveMain){
+        if (!haveMain) {
             throw new MyException("No Main");
         }
         outputFile.println("if __name__ == '__main__':");
